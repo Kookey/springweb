@@ -16,7 +16,24 @@
 	<context:annotation-config />
 	<context:component-scan base-package="org.kookey.controller"></context:component-scan>
 	<mvc:annotation-driven />
+	
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/html/**" location="/html/" />
+	<mvc:resources mapping="/common/**" location="/common/" />
+	
+	<bean id="exceptionResolver"
+		class="org.kookey.exception.CustomSimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.kookey.exception.SystemException">error/500</prop>
+				<prop key="org.kookey.exception.BusinessException">error/errorpage</prop>
+				<prop key="java.lang.exception">error/500</prop>
 
+			</props>
+		</property>
+	</bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
