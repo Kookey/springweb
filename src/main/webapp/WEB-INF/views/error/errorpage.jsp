@@ -1,13 +1,14 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
-	isErrorPage="true"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isErrorPage="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>error page</title>
-<script type="text/javascript" src="../../../js/jquery-1.11.1.js"></script>
+<%@ include file="../tagHeader.jsp"%>
 <script type="text/javascript">
 	$(function() {
-		$("#center-div").center(true);
+		
 	});
 </script>
 </head>
@@ -16,8 +17,9 @@
 		<table style="height: 100%; width: 600px; text-align: center;">
 			<tr>
 				<td>
-					<%=exception.getMessage()%>
+					${exception.message}
 				</td>
+				<td><a href="login.do">登录</a></td>
 			</tr>
 		</table>
 	</div>
