@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>error page</title>
-<%@ include file="../tagHeader.jsp"%>
+<%@ include file="/common/tagHeader.jsp"%>
 <script type="text/javascript">
 	$(function() {
 		
@@ -18,6 +18,12 @@
 			<tr>
 				<td>
 					${exception.message}
+				</td>
+				<td>
+					${exception}
+				</td>
+				<td>
+					${requestScope.ex}
 				</td>
 				<td><a href="login.do">登录</a></td>
 			</tr>

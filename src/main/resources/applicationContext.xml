@@ -27,20 +27,19 @@
 		<property name="logViolation" value="true" />
 		<property name="throwException" value="false" />
 	</bean>
-	<context:property-placeholder location="classpath:jdbc.properties" />
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		 destroy-method="close" lazy-init="default">
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}"></property>
-		<property name="password" value="${password}" />
-		<property name="filters" value="${filters}"></property>
+		 destroy-method="close" init-method="init">
+		<property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="username" value="root"></property>
+		<property name="password" value="root" />
+		<property name="filters" value="stat"></property>
 		<property name="maxActive" value="20"></property>
 		<property name="initialSize" value="1"></property>
 		<property name="maxWait" value="60000"></property>
 		<property name="minIdle" value="1"></property>
 		<property name="timeBetweenEvictionRunsMillis" value="60000"></property>
 		<property name="minEvictableIdleTimeMillis" value="300000"></property>
-		<property name="validationQuery" value="${validationQuery}"></property>
+		<property name="validationQuery" value="SELECT 'x'"></property>
 		<property name="testWhileIdle" value="true"></property>
 		<property name="testOnBorrow" value="false"></property>
 		<property name="testOnReturn" value="false"></property>
@@ -83,8 +82,12 @@
 		scope="prototype">
 		<property name="patterns">
 			<list>
-				<value>org.kookey.persistence.*</value>
+				<value>org.kookey.service.*</value>
 			</list>
 		</property>
 	</bean>
+	<aop:config proxy-target-class="true">
+    <aop:advisor advice-ref="druid-stat-interceptor"
+        pointcut-ref="druid-stat-pointcut" />
+</aop:config>
 </beans>
