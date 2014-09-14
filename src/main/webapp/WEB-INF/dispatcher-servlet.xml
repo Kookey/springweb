@@ -17,38 +17,27 @@
 	<context:component-scan base-package="org.kookey.controller"></context:component-scan>
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<ref bean="mappingJacksonHttpMessageConverter" />
-			</list>
-		</property>
+	<property name="messageConverters">
+	<list>
+	<ref bean="mappingJacksonHttpMessageConverter" />
+	</list>
+	</property>
 	</bean>
-	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/html;charset=UTF-8</value>
-			</list>
-		</property>
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	<property name="supportedMediaTypes">
+	<list>
+	<value>text/html;charset=UTF-8</value>
+	</list>
+	</property>
 	</bean>
-<!-- 	<context:annotation-config /> -->
 <!-- 	<mvc:annotation-driven /> -->
+
 	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/html/**" location="/html/" />
 	<mvc:resources mapping="/common/**" location="/common/" />
 
-	<bean id="exceptionResolver"
-		class="org.kookey.exception.CustomSimpleMappingExceptionResolver">
-		<property name="exceptionMappings">
-			<props>
-				<prop key="org.kookey.exception.SystemException">error/500</prop>
-				<prop key="org.kookey.exception.BusinessException">error/errorpage</prop>
-				<prop key="java.lang.exception">error/500</prop>
-
-			</props>
-		</property>
-	</bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -56,22 +45,34 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<!-- <bean -->
-	<!-- class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> -->
-	<!-- <property name="order" value="1" /> -->
-	<!-- <property name="mediaTypes"> -->
-	<!-- <map> -->
-	<!-- <entry key="json" value="application/json" /> -->
-	<!-- <entry key="xml" value="application/xml" /> -->
-	<!-- </map> -->
-	<!-- </property> -->
-	<!-- <property name="defaultViews"> -->
-	<!-- <list> -->
-	<!-- <bean -->
-	<!-- class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" 
-		/> -->
-	<!-- </list> -->
-	<!-- </property> -->
-	<!-- <property name="ignoreAcceptHeader" value="true" /> -->
-	<!-- </bean> -->
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> -->
+<!-- 		<property name="order" value="1" /> -->
+<!-- 		<property name="favorParameter" value="false" /> -->
+<!-- 		<property name="ignoreAcceptHeader" value="true" /> -->
+<!-- 		<property name="defaultContentType" value="text/html" /> -->
+<!-- 		<property name="mediaTypes"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="html" value="text/html" /> -->
+<!-- 				<entry key="json" value="application/json" /> -->
+<!-- 				<entry key="xml" value="application/xml" /> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+<!-- 		<property name="defaultViews"> -->
+<!-- 			<list> -->
+<!-- 				<bean -->
+<!-- 					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" /> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	<bean id="exceptionResolver"
+		class="org.kookey.exception.CustomSimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.kookey.exception.SystemException">error/500</prop>
+				<prop key="org.kookey.exception.BusinessException">error/errorpage</prop>
+				<prop key="java.lang.exception">error/500</prop>
+			</props>
+		</property>
+	</bean>
 </beans>

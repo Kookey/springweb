@@ -10,6 +10,7 @@ import org.kookey.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +34,7 @@ public class HelloWorldController {
 	}
 	@RequestMapping(value="test/json.do",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Employee> getEmployeeJson(){
+	public List<Employee> getEmployeeJson(Model model){
 		return employeeService.getAllEmployee();
 	}
 }

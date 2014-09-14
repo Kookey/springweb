@@ -2,6 +2,8 @@ package org.kookey.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 
  * @author admin
@@ -30,6 +32,7 @@ public class Employee implements Serializable {
 	private boolean sex;
 	private double salary;
 	private String address;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	private String married;
 
